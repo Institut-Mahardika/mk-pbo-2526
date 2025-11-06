@@ -1,0 +1,15 @@
+Nama Penumpang: ahmad
+Tujuan: Yogyakarta
+Kelas: Ekonomi
+Jumlah Tiket: 1  Kursi: A1
+Diskon: 10%
+Total Harga: Rp 108.000
+=== DETAIL TIKET KERETA API ===
+Nama Penumpang: qwerty
+Tujuan        : Yogyakarta
+Kelas Kereta  : Ekonomi
+Jumlah Tiket  : 1  
+Kursi         : A1
+Diskon        : 10%
+Total Harga   : Rp 108.000
+==============================

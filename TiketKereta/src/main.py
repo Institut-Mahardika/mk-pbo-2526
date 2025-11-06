@@ -98,6 +98,21 @@ def menu_pesan_tiket():
     if diskon:
         print(f"Diskon         : {int(diskon*100)}%")
     print(f"Total Harga    : {format_rp(total)}")
+    
+    # Cetak Tiket
+    with open("cetak_tiket.txt", "a") as file:
+        file.write(f"\n=== DETAIL TIKET KERETA API ===\n")
+        file.write(f"Nama Penumpang: {pelanggan.nama}\n")
+        file.write(f"Tujuan        : {tiket.tujuan}\n")
+        file.write(f"Kelas Kereta  : {tiket.__class__.__name__.replace('Tiket','')}\n")
+        file.write(f"Jumlah Tiket  : {tiket.jumlah}\n")
+        file.write(f"Kursi         : {', '.join(tiket.kursi)}\n")
+        if diskon:
+            file.write(f"Diskon        : {int(diskon*100)}%\n")
+        file.write(f"Total Harga   : {format_rp(total)}\n")
+        file.write(f"=============================\n\n")
+    print("Data tiket disimpan ke file cetak_tiket.txt")
+    
     print("Terima kasih telah membeli tiket!\n")
 
 def menu_daftar_tiket():
@@ -132,7 +147,8 @@ def main():
         print("[1] Pesan Tiket")
         print("[2] Lihat Daftar Tiket")
         print("[3] Lihat Ringkasan Pembelian")
-        print("[4] Keluar")
+        print("[4] Cetak Tiket")
+        print("[5] Keluar")
         pilih = input("Pilih menu: ").strip()
         if pilih == "1":
             try:
@@ -143,7 +159,7 @@ def main():
             menu_daftar_tiket()
         elif pilih == "3":
             menu_ringkasan()
-        elif pilih == "4":
+        elif pilih == "5":
             print("Sampai jumpa!"); break
         else:
             print("Menu tidak dikenal.\n")
