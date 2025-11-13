@@ -1,15 +1,15 @@
 [
     {
         "pelanggan": {
-            "nama": "Ahmad Ngiliyun",
-            "usia": 23,
+            "nama": "Salsabilla",
+            "usia": 19,
             "is_pelajar": true
         },
         "tiket": {
             "jenis_class": "TiketBisnis",
             "nama_kereta": "KA Argo Lawu",
-            "tujuan": "Surabaya",
-            "tanggal": "2025-09-02",
+            "tujuan": "Solo",
+            "tanggal": "2025-06-04",
             "jumlah": 1,
             "harga_dasar": 400000.0,
             "kursi": [
@@ -17,6 +17,30 @@
             ]
         },
         "total": 373500.0,
+        "diskon": 0.1
+    },
+    {
+        "pelanggan": {
+            "nama": "Giyas sekeluarga",
+            "usia": 21,
+            "is_pelajar": true
+        },
+        "tiket": {
+            "jenis_class": "TiketEkonomi",
+            "nama_kereta": "KA Bengawan",
+            "tujuan": "Yogyakarta",
+            "tanggal": "2026-01-01",
+            "jumlah": 5,
+            "harga_dasar": 120000.0,
+            "kursi": [
+                "A1",
+                "A2",
+                "A3",
+                "A4",
+                "A5"
+            ]
+        },
+        "total": 540000.0,
         "diskon": 0.1
     }
 ]
