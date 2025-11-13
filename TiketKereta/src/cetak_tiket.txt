@@ -1,0 +1,11 @@
+
+=== DETAIL TIKET KERETA API ===
+Nama Penumpang: Ngiliyun
+Tujuan        : Solo
+Kelas Kereta  : Bisnis
+Jumlah Tiket  : 1
+Kursi         : A1
+Diskon        : 10%
+Total Harga   : Rp 373.500
+=============================
+

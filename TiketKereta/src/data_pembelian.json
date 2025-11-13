@@ -1,0 +1,22 @@
+[
+    {
+        "pelanggan": {
+            "nama": "Ahmad Ngiliyun",
+            "usia": 23,
+            "is_pelajar": true
+        },
+        "tiket": {
+            "jenis_class": "TiketBisnis",
+            "nama_kereta": "KA Argo Lawu",
+            "tujuan": "Surabaya",
+            "tanggal": "2025-09-02",
+            "jumlah": 1,
+            "harga_dasar": 400000.0,
+            "kursi": [
+                "A1"
+            ]
+        },
+        "total": 373500.0,
+        "diskon": 0.1
+    }
+]
