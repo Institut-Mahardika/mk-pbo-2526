@@ -1,8 +1,15 @@
-2025-11-20 10:42:13,834 - INFO - Aplikasi tiket kereta di-start, data pembelian diload dari JSON.
-2025-11-20 10:42:23,604 - INFO - User memilih menu: 3
-2025-11-20 10:42:23,605 - INFO - User membuka menu RINGKASAN PEMBELIAN.
-2025-11-20 10:42:23,605 - INFO - Ringkasan pembelian ditampilkan. Grand total: 913500.0.
-2025-11-20 10:42:29,914 - INFO - User memilih menu: 4
-2025-11-20 10:42:29,914 - INFO - User membuka menu CETAK TIKET (lihat file cetak_tiket.txt).
-2025-11-20 10:42:33,935 - INFO - User memilih menu: 7
-2025-11-20 10:42:33,935 - INFO - User memilih keluar. Aplikasi akan dihentikan.
+2025-11-20 11:12:21,320 - INFO - Aplikasi tiket kereta di-start, data pembelian diload dari JSON.
+2025-11-20 11:12:29,658 - INFO - User memilih menu: 2
+2025-11-20 11:12:29,658 - INFO - User membuka menu DAFTAR TIKET (demo polimorfisme).
+2025-11-20 11:12:31,698 - INFO - User memilih menu: 3
+2025-11-20 11:12:31,698 - INFO - User membuka menu RINGKASAN PEMBELIAN.
+2025-11-20 11:12:31,698 - INFO - Ringkasan pembelian ditampilkan. Grand total: 913500.0.
+2025-11-20 11:12:40,136 - INFO - User memilih menu: 4
+2025-11-20 11:12:40,137 - INFO - User membuka menu CETAK TIKET (lihat file cetak_tiket.txt).
+2025-11-20 11:13:02,272 - INFO - User memilih menu: 1
+2025-11-20 11:13:02,273 - INFO - User membuka menu PESAN TIKET.
+2025-11-20 11:13:25,310 - INFO - Pembelian tiket berhasil: qweqweqw, tujuan Surabaya, kelas Eksekutif, jumlah 2, total 1125000.0.
+2025-11-20 11:13:25,312 - INFO - Detail tiket juga dicetak ke file cetak_tiket.txt.
+2025-11-20 11:13:56,609 - INFO - User memilih menu: 3
+2025-11-20 11:13:56,616 - INFO - User membuka menu RINGKASAN PEMBELIAN.
+2025-11-20 11:13:56,617 - INFO - Ringkasan pembelian ditampilkan. Grand total: 2038500.0.

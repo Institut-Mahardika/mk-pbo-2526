@@ -87,7 +87,7 @@ def menu_pesan_tiket():
             raise ValueError
     except Exception:
         print("Jumlah tiket harus angka > 0.")
-        log_warning(f"User memasukkan jumlah tiket tidak valid: '{jumlah_raw}'.")
+        log_warning(f"User memasukkan jumlah tiket tidak valid: '{jumlah}'.")
         return
 
     # Buat objek kelas sesuai label
@@ -235,7 +235,7 @@ def menu_hapus_pembelian():
 
     pembelian.pop(idx)
     TiketRepository.save_pembelian(pembelian)
-    print("🗑️ Pembelian berhasil dihapus.\n")
+    print("Pembelian berhasil dihapus.\n")
 
 
 def menu_ringkasan():

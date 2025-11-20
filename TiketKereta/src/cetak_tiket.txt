@@ -20,3 +20,14 @@ Diskon        : 10%
 Total Harga   : Rp 540.000
 =============================
 
+
+=== DETAIL TIKET KERETA API ===
+Nama Penumpang: qweqweqw
+Tujuan        : Surabaya
+Kelas Kereta  : Eksekutif
+Jumlah Tiket  : 2
+Kursi         : A1, A2
+Diskon        : 10%
+Total Harga   : Rp 1.125.000
+=============================
+

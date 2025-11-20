@@ -42,5 +42,26 @@
         },
         "total": 540000.0,
         "diskon": 0.1
+    },
+    {
+        "pelanggan": {
+            "nama": "qweqweqw",
+            "usia": 23,
+            "is_pelajar": true
+        },
+        "tiket": {
+            "jenis_class": "TiketEksekutif",
+            "nama_kereta": "KA Argo Bromo",
+            "tujuan": "Surabaya",
+            "tanggal": "2025-08-02",
+            "jumlah": 2,
+            "harga_dasar": 600000.0,
+            "kursi": [
+                "A1",
+                "A2"
+            ]
+        },
+        "total": 1125000.0,
+        "diskon": 0.1
     }
 ]
