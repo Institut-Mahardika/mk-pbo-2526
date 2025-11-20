@@ -1,0 +1,8 @@
+2025-11-20 10:42:13,834 - INFO - Aplikasi tiket kereta di-start, data pembelian diload dari JSON.
+2025-11-20 10:42:23,604 - INFO - User memilih menu: 3
+2025-11-20 10:42:23,605 - INFO - User membuka menu RINGKASAN PEMBELIAN.
+2025-11-20 10:42:23,605 - INFO - Ringkasan pembelian ditampilkan. Grand total: 913500.0.
+2025-11-20 10:42:29,914 - INFO - User memilih menu: 4
+2025-11-20 10:42:29,914 - INFO - User membuka menu CETAK TIKET (lihat file cetak_tiket.txt).
+2025-11-20 10:42:33,935 - INFO - User memilih menu: 7
+2025-11-20 10:42:33,935 - INFO - User memilih keluar. Aplikasi akan dihentikan.

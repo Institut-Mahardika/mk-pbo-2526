@@ -4,6 +4,7 @@ from domain.tiket_bisnis import TiketBisnis
 from domain.tiket_eksekutif import TiketEksekutif
 from domain.pelanggan import Pelanggan
 from repo.tiket_repository import TiketRepository
+from utils.logger import log_info, log_warning, log_error
 
 # ====== Data master tiket (template) ======
 DAFTAR_TIKET = [
@@ -14,6 +15,7 @@ DAFTAR_TIKET = [
 
 # List pembelian akan di-load dari file (jika ada)
 pembelian: list[dict] = TiketRepository.load_pembelian()
+log_info("Aplikasi tiket kereta di-start, data pembelian diload dari JSON.")
 
 
 def format_rp(n: float) -> str:
@@ -46,10 +48,12 @@ def pilih_template_tiket(kode: str):
 
 # ====== Menu ======
 def menu_pesan_tiket():
+    log_info("User membuka menu PESAN TIKET.")
     print("\n=== PESAN TIKET ===")
     nama = input("Nama Penumpang : ").strip()
     if not nama:
         print("Nama wajib diisi.")
+        log_warning("User gagal pesan tiket: nama penumpang kosong.")
         return
 
     try:
@@ -57,6 +61,7 @@ def menu_pesan_tiket():
         usia = int(usia_raw) if usia_raw else None
     except ValueError:
         print("Usia harus angka atau kosong.")
+        log_warning(f"User memasukkan usia tidak valid: '{usia_raw}'.")
         return
 
     pelajar = input("Apakah pelajar? (y/n): ").strip().lower() == "y"
@@ -70,6 +75,7 @@ def menu_pesan_tiket():
         nker, tuj_default, harga_dasar, kelas_label = pilih_template_tiket(pilih)
     except Exception as e:
         print(e)
+        log_warning(f"User memilih template tiket tidak valid: '{pilih}'. Error: {e}")
         return
 
     tujuan = input(f"Tujuan [{tuj_default}]: ").strip() or tuj_default
@@ -81,6 +87,7 @@ def menu_pesan_tiket():
             raise ValueError
     except Exception:
         print("Jumlah tiket harus angka > 0.")
+        log_warning(f"User memasukkan jumlah tiket tidak valid: '{jumlah_raw}'.")
         return
 
     # Buat objek kelas sesuai label
@@ -109,6 +116,10 @@ def menu_pesan_tiket():
     pembelian.append(item)
     # === SIMPAN KE FILE JSON lewat repository ===
     TiketRepository.save_pembelian(pembelian)
+    log_info(
+        f"Pembelian tiket berhasil: {pelanggan.nama}, tujuan {tiket.tujuan}, "
+        f"kelas {tiket.__class__.__name__.replace('Tiket','')}, jumlah {tiket.jumlah}, total {total}."
+    )
 
     print("\n=== TRANSAKSI BERHASIL ===")
     print(f"Nama Penumpang : {pelanggan.nama}")
@@ -120,22 +131,28 @@ def menu_pesan_tiket():
     print(f"Total Harga    : {format_rp(total)}")
 
     # Cetak Tiket ke file teks (seperti versi awal Mas)
-    with open("cetak_tiket.txt", "a", encoding="utf-8") as file:
-        file.write(f"\n=== DETAIL TIKET KERETA API ===\n")
-        file.write(f"Nama Penumpang: {pelanggan.nama}\n")
-        file.write(f"Tujuan        : {tiket.tujuan}\n")
-        file.write(f"Kelas Kereta  : {tiket.__class__.__name__.replace('Tiket','')}\n")
-        file.write(f"Jumlah Tiket  : {tiket.jumlah}\n")
-        file.write(f"Kursi         : {', '.join(tiket.kursi)}\n")
-        if diskon:
-            file.write(f"Diskon        : {int(diskon*100)}%\n")
-        file.write(f"Total Harga   : {format_rp(total)}\n")
-        file.write(f"=============================\n\n")
-    print("Data tiket disimpan ke file cetak_tiket.txt")
+    try:
+        with open("cetak_tiket.txt", "a", encoding="utf-8") as file:
+            file.write(f"\n=== DETAIL TIKET KERETA API ===\n")
+            file.write(f"Nama Penumpang: {pelanggan.nama}\n")
+            file.write(f"Tujuan        : {tiket.tujuan}\n")
+            file.write(f"Kelas Kereta  : {tiket.__class__.__name__.replace('Tiket','')}\n")
+            file.write(f"Jumlah Tiket  : {tiket.jumlah}\n")
+            file.write(f"Kursi         : {', '.join(tiket.kursi)}\n")
+            if diskon:
+                file.write(f"Diskon        : {int(diskon*100)}%\n")
+            file.write(f"Total Harga   : {format_rp(total)}\n")
+            file.write(f"=============================\n\n")
+        print("Data tiket disimpan ke file cetak_tiket.txt")
+        log_info("Detail tiket juga dicetak ke file cetak_tiket.txt.")
+    except Exception as e:
+        print(f"Gagal mencetak tiket ke file: {e}")
+        log_error(f"Gagal mencetak tiket ke file: {e}")
     print("Terima kasih telah membeli tiket!\n")
 
 
 def menu_daftar_tiket():
+    log_info("User membuka menu DAFTAR TIKET (demo polimorfisme).")
     print("\n=== DAFTAR TIKET (Polimorfisme) ===")
     contoh_objs = [
         TiketEkonomi("KA Bengawan", "Yogyakarta", "2025-01-01", 1, 120_000, ["A1"]),
@@ -222,9 +239,11 @@ def menu_hapus_pembelian():
 
 
 def menu_ringkasan():
+    log_info("User membuka menu RINGKASAN PEMBELIAN.")
     print("\n=== RINGKASAN PEMBELIAN ===")
     if not pembelian:
         print("Belum ada pembelian.\n")
+        log_info("Ringkasan pembelian kosong (belum ada transaksi).")
         return
 
     grand_total = 0
@@ -240,22 +259,26 @@ def menu_ringkasan():
         print(f"   Total: {format_rp(total)}\n")
         grand_total += total
     print(f"Grand Total: {format_rp(grand_total)}\n")
+    log_info(f"Ringkasan pembelian ditampilkan. Grand total: {grand_total}.")
 
 
 def menu_cetak_tiket():
     """
     Opsional: lihat isi file cetak_tiket.txt dari menu.
     """
+    log_info("User membuka menu CETAK TIKET (lihat file cetak_tiket.txt).")
     print("\n=== CETAK TIKET (LIHAT FILE) ===")
     try:
         with open("cetak_tiket.txt", "r", encoding="utf-8") as f:
             isi = f.read()
         if not isi.strip():
             print("File cetak_tiket.txt masih kosong.\n")
+            log_info("File cetak_tiket.txt kosong saat dibuka user.")
         else:
             print(isi)
     except FileNotFoundError:
         print("File cetak_tiket.txt belum ada.\n")
+        log_warning("User mencoba membuka cetak_tiket.txt, tetapi file belum ada.")
 
 def main():
     while True:
@@ -268,12 +291,15 @@ def main():
         print("[6] Hapus Pembelian")
         print("[7] Keluar")
         pilih = input("Pilih menu: ").strip()
+        
+        log_info(f"User memilih menu: {pilih}")
 
         if pilih == "1":
             try:
                 menu_pesan_tiket()
             except Exception as e:
                 print(f"Terjadi kesalahan: {e}\n")
+                log_error(f"Exception tidak tertangani di menu_pesan_tiket: {e}")
         elif pilih == "2":
             menu_daftar_tiket()
         elif pilih == "3":
@@ -286,9 +312,11 @@ def main():
             menu_hapus_pembelian()
         elif pilih == "7":
             print("Sampai jumpa!")
+            log_info("User memilih keluar. Aplikasi akan dihentikan.")
             break
         else:
             print("Menu tidak dikenal.\n")
+            log_warning(f"User memasukkan pilihan menu tidak dikenal: '{pilih}'.")
 
 
 if __name__ == "__main__":
